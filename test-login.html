@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Login</title>
+</head>
+<body>
+    <h1>Test Login</h1>
+    <div id="result" style="white-space: pre; font-family: monospace;"></div>
+    <script>
+        // Make a direct fetch request to the server
+        const testLogin = async () => {
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = 'Sending request...\n';
+
+            try {
+                const response = await fetch('http://localhost:3001/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username: 'test',
+                        password: 'password'
+                    })
+                });
+
+                const status = response.status;
+                let respText = '';
+                
+                try {
+                    const data = await response.json();
+                    respText = JSON.stringify(data, null, 2);
+                } catch(e) {
+                    respText = await response.text();
+                }
+
+                resultDiv.textContent += `Status: ${status}\n`;
+                resultDiv.textContent += `Response: ${respText}`;
+                
+                if (response.ok) {
+                    resultDiv.textContent += '\n\nSUCCESS! The token was received.';
+                } else {
+                    resultDiv.textContent += '\n\nERROR: The request failed.';
+                }
+            } catch (error) {
+                resultDiv.textContent += `Error: ${error.message}`;
+            }
+        };
+
+        // Run the test on page load
+        window.onload = testLogin;
+    </script>
+</body>
+</html> 
