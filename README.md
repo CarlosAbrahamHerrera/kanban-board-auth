@@ -45,11 +45,16 @@ npm run build
 npm run seed
 ```
 
-Test Users:
+## Test Users:
 - Username: `testuser`, Password: `password123`
-- Username: `admin`, Password: `admin123`
 
 ## Running the Application
+
+
+https://kanban-board-auth-okuj.onrender.com
+
+![screenshot1](./client/public/create-ticket-screen.png)
+![sreenshot2](./client/public/ticket-screen.png)
 
 ### Development Mode
 
@@ -77,7 +82,7 @@ npm start
 
 ## Authentication Flow
 
-1. User enters username/password on the login page
+1. User enters test/password on the login page
 2. Server validates credentials and returns a JWT token
 3. Client stores the token in localStorage
 4. Protected routes check for a valid token
